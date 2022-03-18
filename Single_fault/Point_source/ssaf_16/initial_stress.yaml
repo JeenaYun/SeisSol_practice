@@ -1,0 +1,19 @@
+!Switch
+[s_xx,s_yy,s_zz,s_yz,s_xz]: !ConstantMap
+  map:
+    s_xx: -120e6
+    s_yy: -120e6
+    s_zz: -120e6
+    s_yz: 0
+    s_xz: 0
+[s_xy]: !FunctionMap
+  map:
+    s_xy: |
+      rx = sqrt(x*x);
+      ry2 = sqrt(y*y);
+      rz = sqrt((z+7000)*(z+7000));
+      r = max(rx, rz);
+      if (r <= 250.0 && ry2 <= 250.0) {
+         return -81600000;
+      }
+      return -70000000;

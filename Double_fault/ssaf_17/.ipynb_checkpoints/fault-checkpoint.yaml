@@ -1,0 +1,35 @@
+!Switch
+[s_xx,s_yy,s_zz,s_xy,s_yz,s_xz]: !Include ssaf_17/initial_stress.yaml
+[mu_s, mu_d, d_c, cohesion]: !IdentityMap
+  components:
+    # Inside nucleation patch
+    - !AxisAlignedCuboidalDomainFilter
+      limits:
+        x: [-250, 250]
+        y: [-100, 100]
+        z: [-7250, -6750]
+      components: !ConstantMap
+        map:
+          mu_s:        0.54
+          mu_d:        0.10
+          d_c:         0.50
+          cohesion: -200000
+    # Inside receiver fault
+    - !AxisAlignedCuboidalDomainFilter
+      limits:
+        x: [-1505, -630]
+        y: [750, 3630]
+        z: [-8000, -2000]
+      components: !ConstantMap
+        map:
+          mu_s:        1000
+          mu_d:        1000
+          d_c:         0.50
+          cohesion: -200000
+    # Outside nucleation patch
+    - !ConstantMap
+      map:
+        mu_s:        0.70
+        mu_d:        0.10
+        d_c:         0.50
+        cohesion: -200000
