@@ -1,0 +1,23 @@
+!Switch
+[s_xx,s_yy,s_zz,s_xy,s_yz,s_xz]: !Include ssaf_14/ssaf_14_initial_stress.yaml
+[mu_s, mu_d, d_c, cohesion]: !IdentityMap
+  components:
+    # Inside nucleation patch
+    - !AxisAlignedCuboidalDomainFilter
+      limits:
+        x: [-250, 250]
+        y: [-250, 250]
+        z: [-7250, -6750]
+      components: !ConstantMap
+        map:
+          mu_s:        0.54
+          mu_d:        0.10
+          d_c:         0.50
+          cohesion: -200000
+    # Outside nucleation patch
+    - !ConstantMap
+      map:
+        mu_s:        0.70
+        mu_d:        0.10
+        d_c:         0.50
+        cohesion: -200000

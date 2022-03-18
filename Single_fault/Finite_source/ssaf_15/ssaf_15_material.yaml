@@ -1,0 +1,8 @@
+!Switch
+[rho, mu, lambda, plastCo, bulkFriction]: !ConstantMap
+  map:
+    rho:                 2700
+    mu:           2.9403e+010
+    lambda:        2.941e+010
+    bulkFriction:        0.30
+[s_xx, s_yy, s_zz, s_xy, s_yz, s_xz]: !Include ssaf_15/ssaf_15_initial_stress.yaml
